@@ -17,6 +17,34 @@ app.get('/', (req, res) => {
   res.json({ message: 'HomeCook Backend API is running!' });
 });
 
+// Debug route to check all registered routes
+app.get('/debug', (req, res) => {
+  const routes = [];
+  app._router.stack.forEach(middleware => {
+    if (middleware.route) {
+      routes.push({
+        path: middleware.route.path,
+        methods: Object.keys(middleware.route.methods)
+      });
+    } else if (middleware.name === 'router') {
+      middleware.handle.stack.forEach(handler => {
+        if (handler.route) {
+          routes.push({
+            path: '/api' + handler.route.path,
+            methods: Object.keys(handler.route.methods)
+          });
+        }
+      });
+    }
+  });
+  res.json({ 
+    message: 'Debug info',
+    routes: routes,
+    port: PORT,
+    env: process.env.NODE_ENV
+  });
+});
+
 // Test route to check database
 app.get('/test', async (req, res) => {
   try {

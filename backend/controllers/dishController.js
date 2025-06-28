@@ -2,7 +2,7 @@ const Dish = require('../models/Dish');
 
 const getDishesByDay = async (req, res) => {
   try {
-    const dishes = await Dish.find({ day: req.params.day });
+    const dishes = await Dish.find({ date: req.params.day });
     res.json(dishes);
   } catch (err) {
     res.status(500).json({ error: err.message });
