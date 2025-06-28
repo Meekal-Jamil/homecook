@@ -5,7 +5,7 @@ const dishSchema = new mongoose.Schema({
   image: String,
   price: Number,
   serves: Number,
-  day: Number
+  date: String
 });
 
 module.exports = mongoose.model('Dish', dishSchema);

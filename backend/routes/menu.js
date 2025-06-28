@@ -3,9 +3,9 @@ const router = express.Router();
 const Dish = require("../models/Dish");
 
 router.get("/today", async (req, res) => {
-  const today = new Date().getDay();              //0 for Sunday, 6 for Saturday
+  const today = new Date().toISOString().slice(0, 10); // Get today's date in YYYY-MM-DD format
   try {
-    const dishes = await Dish.find({ day: today });
+    const dishes = await Dish.find({ date: today });
     if (!dishes.length) {
       return res.status(404).json({ message: "No menu available today." });
     }
