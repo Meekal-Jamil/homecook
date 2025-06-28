@@ -17,21 +17,21 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://meekalstudent:oQXK0GM
       price: 300,
       serves: 1,
       image: "biryani.png",
-      date: today
+      date: "2025-06-30"
     },
     {
       name: "Zinger Burger",
       price: 250,
       serves: 1,
       image: "zinger.png",
-      date: today
+      date: "2025-06-30"
     },
     {
       name: "Nihari",
       price: 350,
       serves: 2,
       image: "nihari.png",
-      date: today
+      date: "2025-06-30"
     }
   ]);
 }).then(() => {
