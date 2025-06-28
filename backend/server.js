@@ -17,6 +17,17 @@ app.get('/', (req, res) => {
   res.json({ message: 'HomeCook Backend API is running!' });
 });
 
+// Direct test route for menu (bypassing router)
+app.get('/api/menu/today', async (req, res) => {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const dishes = await Dish.find({ date: today });
+    res.json(dishes);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Debug route to check all registered routes
 app.get('/debug', (req, res) => {
   const routes = [];
