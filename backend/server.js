@@ -6,12 +6,18 @@ const dishRoutes = require('./routes/dishes');
 const orderRoutes = require('./routes/orders');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/homecook', {
+// Health check route
+app.get('/', (req, res) => {
+  res.json({ message: 'HomeCook Backend API is running!' });
+});
+
+// MongoDB connection (will be updated for cloud database)
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/homecook', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
