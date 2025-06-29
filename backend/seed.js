@@ -1,10 +1,11 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Dish = require('./models/Dish');
 
 const today = new Date().toISOString().slice(0, 10); 
 
-// Use environment variable for MongoDB connection (same as server.js)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://meekalstudent:oQXK0GM9PrnCZ4H7@cluster0.ufbe347.mongodb.net/homecook', {
+// Use environment variable for MongoDB connection
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -74,8 +75,8 @@ app.get('/test', async (req, res) => {
   }
 });
 
-// MongoDB connection (will be updated for cloud database)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://meekalstudent:oQXK0GM9PrnCZ4H7@cluster0.ufbe347.mongodb.net/homecook', {
+// MongoDB connection
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
